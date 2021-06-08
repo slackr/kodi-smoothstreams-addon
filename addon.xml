@@ -29,7 +29,7 @@
 <!--        <disclaimer lang="en">-->
 <!--            Important:[CR]Server settings have changed, ensure you check your settings![CR]Known Bugs:[CR] - Keymap Editor doesn't affect new OSD[CR] - Video Preview is disabled[CR] - 'A' key unoperative in OSD[CR]-->
 <!--        </disclaimer>-->
-        <news>v5.0.1-skn (2021-06-8)[CR] - [Fix] Removed deprecated params causing channel play crash[CR]
+        <news>v5.0.1-skn (2021-06-08)[CR] - [Fix] Removed deprecated params causing channel play crash[CR]
         </news>
         <oldnews>
 v5.0.1 (2021-02-27)[CR] - [Fix] Delete recordings routines should now work.[CR]        
