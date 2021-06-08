@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<window>
+	<defaultcontrol>200</defaultcontrol>
+	<animation type="WindowOpen" reversible="false">
+		<effect type="fade" start="0" end="100" time="250"/>
+	</animation>
+	<animation type="WindowClose" reversible="false">
+		<effect type="fade" start="100" end="0" time="250"/>
+	</animation>
+	<controls>
+		<control type="group">
+			<left>840</left>
+			<top>450</top>
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>239</width>
+				<height>138</height>
+				<texture border="2">channel_logo_bg.png</texture>
+			</control>
+			<control type="image">
+				<left>6</left>
+				<top>59</top>
+				<width>225</width>
+				<height>75</height>
+				<texture border="9">channel_number_bg.png</texture>
+			</control>
+			<control type="label">
+				<left>6</left>
+				<top>18</top>
+				<width>225</width>
+				<height>22</height>
+				<font>font14</font>
+				<align>center</align>
+				<textcolor>FF202020</textcolor>
+				<shadowcolor>60FFFFFF</shadowcolor>
+				<label>[B]Channel[/B]</label>
+			</control>
+			<control type="grouplist">
+				<left>12</left>
+				<top>68</top>
+				<width>216</width>
+				<align>center</align>
+				<aligny>center</aligny>
+				<itemgap>0</itemgap>
+				<orientation>horizontal</orientation>
+				<control type="image">
+					<width>45</width>
+					<height>54</height>
+					<texture>$INFO[Window.Property(digit1)]</texture>
+					<visible>!String.IsEmpty(Window.Property(digit1))</visible>
+				</control>
+				<control type="image">
+					<width>45</width>
+					<height>54</height>
+					<texture>$INFO[Window.Property(digit2)]</texture>
+					<visible>!String.IsEmpty(Window.Property(digit2))</visible>
+				</control>
+				<control type="image">
+					<width>45</width>
+					<height>54</height>
+					<texture>$INFO[Window.Property(digit3)]</texture>
+					<visible>!String.IsEmpty(Window.Property(digit3))</visible>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>

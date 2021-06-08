@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+
+  <!-- Account -->
+  <category label="32224">
+    <setting label="Account" type="lsep"/>
+    <setting id="service" type="select" label="32218" lvalues="32328|32330|32332|32335" default="0" />
+    <setting id="username" type="text" label="32201" default="" />
+    <setting id="user_password" type="text" option="hidden" label="32202" default="" />
+    <setting label="Server" type="lsep"/>
+    <setting id="server_region" type="select" label="32223" values="North America|Europe|Asia" default="North America" />
+    <!--North America-->
+    <setting id="server_r0" type="select" label="32204" visible="eq(-1,0)|eq(-1,North America)" values="NA Mix|NA East Mix|NA West Mix|NA East 1 (NJ)|NA East 2 (NY)|NA East 3 (CHI)|NA East 4 (ATL)|NA East 5 (VA)|NA West 1 (PHX)|NA West 2 (LA)" default="NA Mix" />
+    <!--Europe-->
+    <setting id="server_r1" type="select" label="32204" visible="eq(-2,1)|eq(-2,Europe)" values="Euro Mix|Euro UK Mix|Euro NL Mix|Euro DE Mix|EU UK1 (io)|EU UK2 (100TB)|EU NL1 (i3d)|EU FR1 (DP)" default="Euro Mix" />
+    <!--Asia-->
+    <setting id="server_r2" type="select" label="32204" visible="eq(-3,2)|eq(-3,Asia)" values="Asia Mix|Asia SG 1 (SL)|Asia SG 2 (OVH)|Asia SG 3 (DO)" default="Asia Mix" />
+    <!-- Server type: RTMP or HLS -->
+    <setting id="server_type" type="enum" label="32205" lvalues="32213|32214|32236" default="1"  />
+    <setting id="high_def" type="enum" label="32203" values="High Definition 720p|Medium Definition 540p|Low Definition 360p" default="0" />
+  </category>
+
+  <!--General Options-->
+  <category label="32226">
+    <setting label="View" type="lsep"/>
+    <setting id="mode" type="select" label="Change Skin Mode" values="Last|Channels List|EPG|Events List|Events Panel" default="Last"/>
+    <!--<setting id="impatient" type="bool" label="I am impatient" default="false" />-->
+    <!--<setting id="show_video_preview" type="bool" label="Show video preview" default="false" />-->
+    <!--<setting id="disable_list_view_preview" subsetting="true" type="bool" label="Disable in list view" default="false" enable="eq(-1,true)" />-->
+    <!--Recording-->
+    <setting label="32334" type="lsep"/>
+    <setting id="direct_record" type="bool" label="Record directly to recording location" default="true" />
+    <setting id="download_path" type="folder" option="writeable" label="32216" default="" />
+    <setting id="sort_recordings_alpha" type="bool" label="Sort recordings alphabetically" default="false" />
+    <setting label="Misc" type="lsep"/>
+    <setting id="kiosk_mode" type="bool"  label="32043" default="false" />
+  </category>
+
+  <!--Guide Option-->
+  <category label="32235">
+    <setting label="Guide" type="lsep"/>
+    <setting id="guide_source" type="select" label="Guide Source" values="Sports|Full|Alt" default="Sports" />
+    <setting id="auto_advance" type="bool" label="Auto advance schedule" default="true" />
+    <setting id="12_hour_times" type="bool" label="32750" default="false" />
+    <setting label="Time Zone" type="lsep"/>
+    <setting id="schedule_plus_limiter" type="enum" label="32206" values="0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31" default="3" />
+    <setting id="schedule_minus_limiter" type="enum" label="32215" values="0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31" default="2" />
+    <setting id="gmt_offset" type="enum" label="32207" lvalues="32300|32301|32302|32303|32304|32305|32306|32307|32308|32309|32310|32311|32312|32313|32314|32315|32316|32317|32318|32319|32320|32321|32322|32323|32324|32325" default="0" />
+    <setting id="gmt_offset_half" type="bool" label="32208" enable="!eq(-1,0)" default="false" />
+    <setting id="daylight_saving_time" type="bool" label="32209" enable="!eq(-2,0)" default="false" />
+    <!--<setting id="start_video_preview" subsetting="true" type="bool" label="32227" default="false" enable="eq(-2,true)" />-->
+  </category>
+  <!--Controls-->
+  <!--<category label="32333">-->
+    <!--<setting id="fullscreen_on_exit" type="bool" label="Switch video to fullscreen on exit" default="true" />-->
+    <!--<setting id="keep_epg_open" type="bool" subsetting="true" label="Keep EPG open when video is playing (Exit from context menu)" default="false" enable="eq(-1,true)"/>-->
+    <!--<setting id="back_opens_context" type="bool" label="Open options on exit (for devices without a context menu button)" default="false" />-->
+    <!--<setting id="show_fullscreen_option" type="bool" label="Show 'Fullscreen Video' option on context menu" default="false" />-->
+    <!--<setting id="scroll_lr_one_page" type="bool" label="EPG: Advance by page when scrolling left or right off the screen" default="false" />-->
+  <!--</category>-->
+    <!--Advanced-->
+  <category label="32326">
+    <setting id="disable_osd" type="bool" label="Troubleshoot: Disable SSTV On Screen Display" default="false" />
+<!-- <setting id="show_now_next" type="bool" label="32220" default="true" /> -->
+    <!--<setting id="key_repeat_control" type="bool" label="Enable key-repeat throttling" default="false" />-->
+    <!--<setting id="fullscreen_overlay" type="bool" label="Enable fullscreen video overlay" default="false" />-->
+    <!--<setting id="seek_protection" type="bool" subsetting="true" label="(Experimental/WIP) Enable Gotham seek protection" default="false" enable="eq(-1,true)" />-->
+    <!--<setting id="show_tweets" type="bool" label="(Experimental/WIP) Show latest SmoothStreams tweet (EPG)" default="false" />-->
+    <setting id="reset_schedule_action" label="Troubleshoot: Re-fetch schedule" type="action" action='RunScript(script.smoothstreams-v3,REFRESH_SCHEDULE)' />
+    <setting id="ask_version" type="bool" label="32234" default="true" />
+    <setting id="debug" type="bool" label="32217" default="false" />
+    <!--<setting id="url_timeout" type="number" label="Channel Timeout Time" default="6" />-->
+    <!--<setting id="about_action" label="About" type="action" action='xbmc.RunScript(script.smoothstreams-v3,ABOUT)' />-->
+    <setting id="colour_select_focus" label="Focus Colour" type="action" action='RunScript(script.skin.helper.colorpicker,winproperty=script-smoothstreams-v3.colour.select.focus)' />
+    <setting id="colour_select_background" label="Background Colour" type="action" action='RunScript(script.skin.helper.colorpicker,winproperty=script-smoothstreams-v3.colour.select.background)' />
+    <setting label="KODI PVR Manager" type="lsep"/>
+    <setting id="enable_pvr" type="bool" label="Enable Proxy for Kodi PVR" default="false" />
+    <setting id="reset_pvr" label="Troubleshoot: Setup PVR" type="action"  enable="eq(-1,true)" action='RunScript(script.smoothstreams-v3,PROXY)' />
+    <setting id="FAV" type="text" label="Favourite Channels" description="comma separated values"  enable="eq(-2,true)" default="" />
+    <!--<setting id="TEST" type="enum" label="Enable Test Channels" values="False|True" default="0" />-->
+    <!--<setting id="mpeg" type="bool" label="MPEG (Don't use!)" default="false" />-->
+  </category>
+
+  <!--Cactegories-->
+  <category label="32400">
+    <!--<setting id="show_subcategories" type="bool" label="Show subcategories" default="false" />-->
+    <setting id="show_all" type="bool" label="Show [B]ALL[/B] categories" default="true" />
+    <setting id="show_30401" type="bool" label="32401" default="true" enable="eq(-1,false)" />
+    <setting id="show_30402" type="bool" label="32402" default="true" subsetting="true" enable="eq(-1,true) + eq(-2,false)" />
+    <setting id="show_30403" type="bool" label="32403" default="true" subsetting="true" enable="eq(-2,true) + eq(-3,false)" />
+    <setting id="show_30404" type="bool" label="32404" default="true" enable="eq(-4,false)" />
+    <setting id="show_30405" type="bool" label="32405" default="true" enable="eq(-5,false)" />
+    <setting id="show_30406" type="bool" label="32406" default="true" subsetting="true" enable="eq(-1,true) + eq(-6,false)" />
+    <setting id="show_30407" type="bool" label="32407" default="true" subsetting="true" enable="eq(-2,true) + eq(-7,false)" />
+    <setting id="show_30408" type="bool" label="32408" default="true" enable="eq(-8,false)" />
+    <setting id="show_30409" type="bool" label="32409" default="true" enable="eq(-9,false)" />
+    <setting id="show_30410" type="bool" label="32410" default="true" enable="eq(-10,false)" />
+    <setting id="show_30411" type="bool" label="32411" default="true" enable="eq(-11,false)" />
+    <setting id="show_30412" type="bool" label="32412" default="true" enable="eq(-12,false)" />
+    <setting id="show_30413" type="bool" label="32413" default="true" subsetting="true" enable="eq(-1,true) + eq(-13,false)" />
+    <setting id="show_30414" type="bool" label="32414" default="true" subsetting="true" enable="eq(-2,true) + eq(-14,false)" />
+    <setting id="show_30415" type="bool" label="32415" default="true" enable="eq(-15,false)" />
+    <setting id="show_30416" type="bool" label="32416" default="true" enable="eq(-16,false)" />
+    <setting id="show_30417" type="bool" label="32417" default="true" enable="eq(-17,false)" />
+    <setting id="show_30418" type="bool" label="32418" default="true" enable="eq(-18,false)" />
+    <setting id="show_30419" type="bool" label="32419" default="true" enable="eq(-19,false)" />
+    <setting id="show_30420" type="bool" label="32420" default="true" enable="eq(-20,false)" />
+    <setting id="show_30421" type="bool" label="32421" default="true" enable="eq(-21,false)" />
+  </category>
+</settings>

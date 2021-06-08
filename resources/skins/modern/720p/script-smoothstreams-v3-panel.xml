@@ -1,0 +1,871 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<window>
+	<menucontrol>9000</menucontrol>
+	<defaultcontrol>100</defaultcontrol>
+	<coordinates>
+		<system>1</system>
+		<left>0</left>
+		<top>0</top>
+	</coordinates>
+	<controls>
+
+		<control type="group">
+			<animation type="WindowOpen" reversible="false">
+				<effect type="fade" start="0" end="100" time="250"/>
+			</animation>
+			<animation type="WindowClose" reversible="false">
+				<effect type="fade" start="100" end="0" time="250"/>
+			</animation>
+			<control type="videowindow">
+				<depth>-0.80</depth>
+				<left>0</left>
+				<top>0</top>
+				<width>100%</width>
+				<height>100%</height>
+				<!--<visible>Player.HasVideo</visible>-->
+				<visible>String.IsEmpty(Window.Property(hide_video_preview))</visible>
+			</control>
+			<control type="visualisation">
+				<left>0</left>
+				<top>0</top>
+				<width>100%</width>
+				<height>100%</height>
+				<visible>!Slideshow.IsActive</visible>
+				<visible>Player.HasAudio + String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia)) + Visualisation.Enabled</visible>
+			</control>
+			<control type="group">
+				<left>0</left>
+				<top>0</top>
+				<width>100%</width>
+				<height>100%</height>
+				<animation effect="zoom" center="auto" end="102,102" time="0" condition="Integer.IsGreater(System.StereoscopicMode,0)">conditional</animation>
+				<control type="group">
+					<animation effect="fade" start="100" end="bg_alpha" time="0" condition="!Control.IsVisible(31111)">Conditional</animation>
+					<animation effect="fade" start="0" end="100" time="300" condition="Window.Previous(fullscreenvideo) | Window.Previous(FullscreenGame) | Window.Previous(startup)">WindowOpen</animation>
+					<control type="image">
+						<depth>-0.80</depth>
+						<depth>-0.80</depth>
+						<left>0</left>
+						<top>0</top>
+						<width>100%</width>
+						<height>100%</height>
+						<aspectratio>scale</aspectratio>
+						<texture colordiffuse="Window(10000).Property(script.smoothstreams-v3.colour.background)">backgrounds/primary.jpg</texture>
+					</control>
+					<control type="image">
+						<depth>-0.80</depth>
+						<left>0</left>
+						<top>0</top>
+						<width>100%</width>
+						<height>100%</height>
+						<aspectratio>scale</aspectratio>
+						<texture colordiffuse="330BAA8E" fallback="backgrounds/pattern1.jpg">$INFO[Skin.String(background_overlay),backgrounds/pattern,.jpg]</texture>
+					</control>
+				</control>
+				<control type="group" id="31111">
+					<visible>![Player.HasVideo | [Player.HasAudio + Visualisation.Enabled + !String.IsEmpty(Visualisation.Name)]] | !String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))</visible>
+					<depth>-0.80</depth>
+					<animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+					<animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+					<animation effect="fade" time="400">VisibleChange</animation>
+					<control type="image" id="32111">
+						<left>0</left>
+						<top>0</top>
+						<width>100%</width>
+						<height>100%</height>
+						<aspectratio>scale</aspectratio>
+						<fadetime>400</fadetime>
+						<animation effect="fade" time="400">VisibleChange</animation>
+						<texture background="true" colordiffuse="37FFFFFF">$INFO[Container.Art(fanart)]</texture>
+						<visible>!Control.IsVisible(502) | [Window.IsActive(musicinformation) | Window.IsActive(songinformation) | Window.IsActive(movieinformation) | Window.IsActive(addoninformation) | Window.IsActive(pvrguideinfo) | Window.IsActive(pvrrecordinginfo) | Window.IsActive(pictureinfo) | Window.IsVisible(script-script.extendedinfo-DialogVideoInfo.xml) | Window.IsVisible(script-script.extendedinfo-DialogInfo.xml) | Window.IsVisible(script-script.extendedinfo-VideoList.xml)]</visible>
+					</control>
+					<control type="image">
+						<left>-3</left>
+						<top>0</top>
+						<right>1193</right>
+						<height>100%</height>
+						<aspectratio aligny="center">scale</aspectratio>
+						<fadetime>400</fadetime>
+						<animation effect="fade" end="100" time="200">WindowOpen</animation>
+						<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+							<animation type="WindowOpen">
+							<effect type="fade" start="0" end="100" time="300" tween="sine" easing="out" />
+							<effect type="slide" start="-320" end="0" time="400" tween="cubic" easing="out" />
+						</animation>
+						<animation type="WindowClose">
+							<effect type="fade" start="100" end="0" time="300" tween="sine" easing="out" />
+							<effect type="slide" start="0" end="-320" time="300" tween="cubic" easing="out" />
+						</animation>
+						<animation effect="fade" time="400">VisibleChange</animation>
+						<texture background="true" colordiffuse="37FFFFFF">$INFO[ListItem.Art(poster)]</texture>
+						<visible>!Control.IsVisible(32111)</visible>
+					</control>
+				</control>
+			</control>
+			<!--<control type="image">-->
+				<!--<width>100%</width>-->
+				<!--<height>100%</height>-->
+				<!--<texture>bg/overlay.png</texture>-->
+			<!--</control>-->
+		</control>
+
+
+		<!-- ========= -->
+		<!-- Top Group -->
+		<!-- ========= -->
+		<control type="group">
+			<animation type="WindowOpen" reversible="false">
+				<effect type="slide" start="0,-35" end="0,0" time="300" tween="quadratic" easing="out"/>
+				<effect type="fade" start="0" end="100" time="250"/>
+			</animation>
+			<animation type="WindowClose" reversible="false">
+				<effect type="slide" start="0,0" end="0,-35" time="300" tween="quadratic" easing="out"/>
+				<effect type="fade" start="100" end="0" time="250"/>
+			</animation>
+			<control type="image">
+				<left>12</left>
+				<top>20</top>
+				<width>96</width>
+				<height>82</height>
+				<texture>$INFO[System.AddonIcon(script.smoothstreams-v3)]</texture>
+			</control>
+			<control type="label">
+				<left>105</left>
+				<top>44</top>
+				<width>620</width>
+				<height>50</height>
+				<font>font14</font>
+				<aligny>center</aligny>
+				<textcolor>Window(10000).Property(script.smoothstreams-v3.colour.progress)</textcolor>
+				<shadowcolor>77000000</shadowcolor>
+				<label>[B]$ADDON[script.smoothstreams-v3 32006][/B]</label>
+			</control>
+			<control type="videowindow">
+				<left>516</left>
+				<top>10</top>
+				<width>248</width>
+				<height>140</height>
+				<visible>String.IsEmpty(Window.Property(hide_video_preview))</visible>
+			</control>
+			<control type="label">
+				<left>20</left>
+				<top>44</top>
+				<width>1240</width>
+				<height>50</height>
+				<font>font14</font>
+				<align>right</align>
+				<aligny>center</aligny>
+				<textcolor>DDFFFFFF</textcolor>
+				<shadowcolor>77000000</shadowcolor>
+				<label>$INFO[System.Date(ddd),,$COMMA ]$INFO[System.Date(mmm),, ]$INFO[System.Date(d),,$COMMA ]$INFO[System.Time]</label> -->
+				<!-- <label>$INFO[System.Date(ddd),,$COMMA ]$INFO[System.Date(mmm)]$INFO[System.Date(d), ]$INFO[System.Date(yyyy),$COMMA ][CR]$INFO[System.Time]</label> -->
+			</control>
+		</control>
+
+
+		<!-- ========== -->
+		<!-- Main Group -->
+		<!-- ========== -->
+		<control type="group" id="200">
+			<defaultcontrol>201</defaultcontrol>
+			<animation type="WindowOpen" reversible="false">
+				<effect type="slide" start="0,35" end="0,0" time="300" tween="quadratic" easing="out"/>
+				<effect type="fade" start="0" end="100" time="250"/>
+			</animation>
+			<animation type="WindowClose" reversible="false">
+				<effect type="slide" start="0,0" end="0,35" time="300" tween="quadratic" easing="out"/>
+				<effect type="fade" start="100" end="0" time="250"/>
+			</animation>
+
+			<!-- Small Top Labels -->
+			<control type="group">
+				<left>23</left>
+				<top>10</top>
+				<control type="image">
+					<left>0</left>
+					<top>150</top>
+					<width>1236</width>
+					<height>1</height>
+					<texture colordiffuse="FF555555">white.png</texture>
+				</control>
+				<control type="label">
+					<left>0</left>
+					<top>110</top>
+					<width>670</width>
+					<height>50</height>
+					<font>font12</font>
+					<aligny>center</aligny>
+					<textcolor>Window(10000).Property(script.smoothstreams-v3.colour.progress)</textcolor>
+					<label>$INFO[Window.Property(category), [COLOR=99FFFFFF]$ADDON[script.smoothstreams-v3 32003]:[/COLOR] ]</label>
+				</control>
+			</control>
+			<control type="group">
+				<left>20</left>
+				<top>120</top>
+				<control type="group">
+					<animation type="Conditional" condition="!ControlGroup(100).HasFocus" reversible="false">
+					 <effect type="slide" start="-216,0" end="0,0" time="300" tween="quadratic" easing="out" />
+					</animation>
+					<animation type="Conditional" condition="ControlGroup(100).HasFocus" reversible="false">
+					 <effect type="slide" start="0,0" end="-216,0" time="300" tween="quadratic" easing="out" />
+					</animation>
+					<control type="image">
+						<left>32r</left>
+						<top>19</top>
+						<width>10</width>
+						<height>14</height>
+						<texture colordiffuse="99FFFFFF">right_arrow.png</texture>
+						<animation effect="fade" start="100" end="0" time="200" condition="ControlGroup(100).HasFocus">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>138r</left>
+						<top>19</top>
+						<width>10</width>
+						<height>14</height>
+						<texture flipx="true" colordiffuse="99FFFFFF">right_arrow.png</texture>
+						<animation effect="fade" start="100" end="0" time="200" condition="!ControlGroup(100).HasFocus">Conditional</animation>
+					</control>
+					<control type="label">
+						<left>353r</left>
+						<top>0</top>
+						<width>315</width>
+						<height>50</height>
+						<font>font12</font>
+						<align>right</align>
+						<aligny>center</aligny>
+						<textcolor>99FFFFFF</textcolor>
+						<label>$ADDON[script.smoothstreams-v3 32004]</label>
+						<animation effect="fade" start="100" end="0" time="200" condition="ControlGroup(100).HasFocus">Conditional</animation>
+					</control>
+					<control type="label">
+						<left>121r</left>
+						<top>0</top>
+						<width>315</width>
+						<height>50</height>
+						<font>font12</font>
+						<align>left</align>
+						<aligny>center</aligny>
+						<textcolor>99FFFFFF</textcolor>
+						<label>$ADDON[script.smoothstreams-v3 32005]</label>
+						<animation effect="fade" start="100" end="0" time="200" condition="!ControlGroup(100).HasFocus">Conditional</animation>
+					</control>
+				</control>
+			</control>
+
+			<!-- Panel Container -->
+			<control type="panel" id="201">
+				<animation type="Conditional" condition="!ControlGroup(100).HasFocus" reversible="false">
+				 	<effect type="slide" start="0,0" end="350,0" time="300" tween="quadratic" easing="out" />
+				</animation>
+				<animation type="Conditional" condition="ControlGroup(100).HasFocus" reversible="false">
+				 	<effect type="slide" start="350,0" end="0,0" time="300" tween="quadratic" easing="out" />
+				</animation>
+				<left>-326</left>
+				<top>176</top>
+				<width>1240</width>
+				<height>510</height>
+				<onleft>9000</onleft>
+				<onright>101</onright>
+				<scrolltime tween="sine" easing="out">300</scrolltime>
+				<itemlayout width="248" height="130">
+					<!-- Left Part -->
+					<control type="image">
+						<left>0</left>
+						<top>2</top>
+						<width>242</width>
+						<height>122</height>
+						<texture border="2">colors/808080.png</texture>
+						<colordiffuse>FF606060</colordiffuse>
+					</control>
+						<control type="image">
+						<left>5</left>
+						<top>12</top>
+						<width>94</width>
+						<height>46</height>
+						<aspectratio>keep</aspectratio>
+						<texture fallback="fallback_logo.png">$INFO[ListItem.Icon]</texture>
+					</control>
+					<control type="label">
+						<left>106</left>
+						<top>2</top>
+						<width>130</width>
+						<height>40</height>
+						<font>font12</font>
+						<aligny>center</aligny>
+						<textcolor>white</textcolor>
+						<shadowcolor>77000000</shadowcolor>
+						<label>[B]$INFO[ListItem.Label2][/B]</label>
+					</control>
+					<control type="label">
+						<left>106</left>
+						<top>28</top>
+						<width>130</width>
+						<height>40</height>
+						<font>font12</font>
+						<aligny>center</aligny>
+						<textcolor>BBFFFFFF</textcolor>
+						<shadowcolor>77000000</shadowcolor>
+						<label>$INFO[ListItem.Property(duration)]</label>
+						<label>$INFO[ListItem.Property(channel),Ch.]</label>
+					</control>
+					<control type="image">
+						<left>180</left>
+						<top>40</top>
+						<width>26</width>
+						<height>18</height>
+						<texture>$INFO[ListItem.Property(quality)]</texture>
+					</control>
+					<control type="image">
+						<left>212</left>
+						<top>40</top>
+						<width>26</width>
+						<height>18</height>
+						<texture fallback="flags/all.png">$INFO[ListItem.Property(flag)]</texture>
+					</control>
+					<control type="image">
+						<left>0</left>
+						<top>70</top>
+						<width>242</width>
+						<height>55</height>
+						<texture border="2">$INFO[ListItem.Property(color)]</texture>
+						<colordiffuse>FF606060</colordiffuse>
+					</control>
+					<control type="image">
+						<left>0</left>
+						<top>66</top>
+						<width>242</width>
+						<height>6</height>
+						<texture colordiffuse="Window(10000).Property(script.smoothstreams-v3.colour.progress)">$INFO[ListItem.Property(playing)]</texture>
+						<visible>!String.IsEmpty(ListItem.Property(playing))</visible>
+					</control>
+					<control type="image...........">
+						<left>0</left>
+						<top>70</top>
+						<width>242</width>
+						<height>55</height>
+						<texture border="2">selected.png</texture>
+						<visible>ListItem.IsPlaying</visible>
+					</control>
+					<control type="textbox">
+						<left>5</left>
+						<top>75</top>
+						<width>232</width>
+						<height>46</height>
+						<font>font12</font>
+						<aligny>center</aligny>
+						<textcolor>BBFFFFFF</textcolor>
+						<shadowcolor>77000000</shadowcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+
+					<!-- Old Overlay -->
+					<control type="image">
+						<visible>!String.IsEmpty(ListItem.Property(old))</visible>
+						<left>0</left>
+						<top>2</top>
+						<width>242</width>
+						<height>123</height>
+						<texture>white.png</texture>
+						<colordiffuse>A0000000</colordiffuse>
+					</control>
+				</itemlayout>
+				<focusedlayout width="248" height="130">
+					<control type="group">
+						<!-- Left Part -->
+						<control type="image">
+							<left>0</left>
+							<top>2</top>
+							<width>242</width>
+							<height>122</height>
+							<texture border="2">colors/808080.png</texture>
+							<colordiffuse>FFB0B0B0</colordiffuse>
+							<animation type="Focus">
+								<effect type="fade" start="30" end="100" time="300" tween="back" easing="out"/>
+							</animation>
+						</control>
+							<control type="image">
+							<left>5</left>
+							<top>12</top>
+							<width>94</width>
+							<height>46</height>
+							<aspectratio>keep</aspectratio>
+							<texture fallback="fallback_logo.png">$INFO[ListItem.Icon]</texture>
+						</control>
+						<control type="label">
+							<left>106</left>
+							<top>2</top>
+							<width>130</width>
+							<height>40</height>
+							<font>font12</font>
+							<aligny>center</aligny>
+							<textcolor>white</textcolor>
+							<shadowcolor>77000000</shadowcolor>
+							<label>[B]$INFO[ListItem.Label2][/B]</label>
+						</control>
+						<control type="label">
+							<left>106</left>
+							<top>28</top>
+							<width>130</width>
+							<height>40</height>
+							<font>font12</font>
+							<aligny>center</aligny>
+							<textcolor>BBFFFFFF</textcolor>
+							<shadowcolor>77000000</shadowcolor>
+							<label>$INFO[ListItem.Property(duration)]</label>
+							<label>$INFO[ListItem.Property(channel),Ch.]</label>
+						</control>
+						<control type="image">
+							<left>180</left>
+							<top>40</top>
+							<width>26</width>
+							<height>18</height>
+							<texture>$INFO[ListItem.Property(quality)]</texture>
+						</control>
+						<control type="image">
+							<left>212</left>
+							<top>40</top>
+							<width>26</width>
+							<height>18</height>
+							<texture fallback="flags/all.png">$INFO[ListItem.Property(flag)]</texture>
+						</control>
+						<control type="image">
+							<left>0</left>
+							<top>70</top>
+							<width>242</width>
+							<height>55</height>
+							<texture border="2">$INFO[ListItem.Property(color)]</texture>
+							<colordiffuse>FFB0B0B0</colordiffuse>
+							<animation type="Focus">
+								<effect type="fade" start="30" end="100" time="300" tween="back" easing="out"/>
+							</animation>
+						</control>
+						<control type="image">
+							<left>0</left>
+							<top>66</top>
+							<width>242</width>
+							<height>6</height>
+							<texture colordiffuse="Window(10000).Property(script.smoothstreams-v3.colour.progress)">$INFO[ListItem.Property(playing)]</texture>
+							<visible>!String.IsEmpty(ListItem.Property(playing))</visible>
+						</control>
+						<control type="image...........">
+							<left>0</left>
+							<top>70</top>
+							<width>243</width>
+							<height>55</height>
+							<texture border="2">selected.png</texture>
+							<visible>ListItem.IsPlaying</visible>
+						</control>
+						<control type="textbox">
+							<left>5</left>
+							<top>75</top>
+							<width>232</width>
+							<height>46</height>
+							<font>font12</font>
+							<aligny>center</aligny>
+							<textcolor>BBFFFFFF</textcolor>
+							<shadowcolor>77000000</shadowcolor>
+							<label>$INFO[ListItem.Label]</label>
+							<autoscroll delay="2000" time="1500" repeat="5000">true</autoscroll>
+						</control>
+
+						<!-- Old Overlay -->
+						<control type="image">
+						<visible>!String.IsEmpty(ListItem.Property(old))</visible>
+						<left>0</left>
+						<top>2</top>
+						<width>242</width>
+						<height>123</height>
+						<texture colordiffuse="A1111111">white.png</texture>
+					</control>
+					</control>
+				</focusedlayout>
+			</control>
+
+			<!-- Addon Version -->
+			<control type="label">
+				<left>18</left>
+				<top>670</top>
+				<width>1240</width>
+				<height>50</height>
+				<font>font12</font>
+				<align>right</align>
+				<aligny>center</aligny>
+				<textcolor>40FFFFFF</textcolor>
+				<shadowcolor>77000000</shadowcolor>
+				<label>$INFO[Window.Property(version)], $INFO[Window.Property(epg_type)] EPG</label>
+			</control>
+		</control>
+
+
+		<!-- ========== -->
+		<!-- Categories -->
+		<!-- ========== -->
+		<control type="group" id="100">
+			<defaultcontrol>101</defaultcontrol>
+			<animation type="Conditional" condition="ControlGroup(100).HasFocus" reversible="false" >
+				<effect type="slide" start="0,0" end="-354,0" time="300" tween="quadratic" easing="out" />
+			</animation>
+			<animation type="Conditional" condition="!ControlGroup(100).HasFocus" reversible="false" >
+				<effect type="slide" start="-354,0" end="0,0" time="300" tween="quadratic" easing="out" />
+			</animation>  
+			<animation type="WindowOpen" reversible="false">
+				<effect type="slide" start="0,35" end="0,0" time="300" tween="quadratic" easing="out"/>
+				<effect type="fade" start="0" end="100" time="250"/>
+			</animation>
+			<animation type="WindowClose" reversible="false">
+				<effect type="slide" start="0,0" end="0,35" time="300" tween="quadratic" easing="out"/>
+				<effect type="fade" start="100" end="0" time="250"/>
+			</animation>
+			<control type="list" id="101">
+				<left>1280</left>
+				<top>296</top>
+				<width>335</width>
+				<height>388</height>
+				<onleft>201</onleft>
+				<onright>201</onright>
+				<scrolltime tween="sine" easing="out">300</scrolltime>
+				<itemlayout height="64.5">
+					<control type="image">
+						<left>0</left>
+						<top>2</top>
+						<width>335</width>
+						<height>60</height>
+						<texture border="2" colordiffuse="FF606060">colors/808080.png</texture>
+					</control>
+					<control type="image">
+						<left>5</left>
+						<top>7</top>
+						<width>20</width>
+						<height>50</height>
+						<texture border="2" colordiffuse="FF606060">$INFO[ListItem.Property(color)]</texture>
+						<visible>!String.IsEqual(ListItem.Label,ALL)</visible>
+					</control>
+					<control type="label">
+						<left>30</left>
+						<top>0</top>
+						<width>260</width>
+						<height>60</height>
+						<font>font13</font>
+						<aligny>center</aligny>
+						<textcolor>white</textcolor>
+						<shadowcolor>77000000</shadowcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<animation effect="slide" start="0" end="-20" condition="String.IsEqual(ListItem.Label,ALL)">Conditional</animation>
+					</control>
+					<control type="image">
+						<left>295</left>
+						<top>16</top>
+						<width>30</width>
+						<height>30</height>
+						<aspectratio>keep</aspectratio>
+						<texture border="1">category_on.png</texture>
+						<visible>String.IsEqual(ListItem.Property(selected),true)</visible>
+					</control>
+					<control type="image">
+						<left>295</left>
+						<top>16</top>
+						<width>30</width>
+						<height>30</height>
+						<aspectratio>keep</aspectratio>
+						<texture border="1">category_off.png</texture>
+						<visible>!String.IsEqual(ListItem.Property(selected),true)</visible>
+					</control>
+				</itemlayout>
+				<focusedlayout height="64.5">
+					<control type="group">
+						<animation type="Focus" reversible="false" condition="Container(101).OnPrevious">
+							<effect type="slide" start="0,35" end="0,0" time="300" tween="back" easing="out"/>
+						</animation>
+						<animation type="Focus" reversible="false" condition="Container(101).OnNext">
+							<effect type="slide" start="0,-35" end="0,0" time="300" tween="back" easing="out"/>
+						</animation>
+						<control type="image">
+							<left>0</left>
+							<top>2</top>
+							<width>335</width>
+							<height>60</height>
+							<texture border="2" colordiffuse="FFB0B0B0">colors/808080.png</texture>
+						</control>
+						<control type="image">
+							<left>5</left>
+							<top>7</top>
+							<width>20</width>
+							<height>50</height>
+							<texture border="2" colordiffuse="FFB0B0B0">$INFO[ListItem.Property(color)]</texture>
+							<visible>!String.IsEqual(ListItem.Label,ALL)</visible>
+						</control>
+						<control type="label">
+							<left>30</left>
+							<top>0</top>
+							<width>260</width>
+							<height>60</height>
+							<font>font13</font>
+							<aligny>center</aligny>
+							<textcolor>white</textcolor>
+							<shadowcolor>77000000</shadowcolor>
+							<label>$INFO[ListItem.Label]</label>
+							<animation effect="slide" start="0" end="-20" condition="String.IsEqual(ListItem.Label,ALL)">Conditional</animation>
+						</control>
+						<control type="image">
+							<left>295</left>
+							<top>16</top>
+							<width>30</width>
+							<height>30</height>
+							<aspectratio>keep</aspectratio>
+							<texture border="1">category_on.png</texture>
+							<visible>String.IsEqual(ListItem.Property(selected),true)</visible>
+						</control>
+						<control type="image">
+							<left>295</left>
+							<top>16</top>
+							<width>30</width>
+							<height>30</height>
+							<aspectratio>keep</aspectratio>
+							<texture border="1">category_off.png</texture>
+							<visible>!String.IsEqual(ListItem.Property(selected),true)</visible>
+						</control>
+					</control>
+				</focusedlayout>
+			</control>
+		</control>
+		<control type="button" id="6130">
+			<label></label>
+			<left>-50</left>
+			<top>200</top>
+			<height>720</height>
+			<width>50</width>
+			<texturefocus />
+			<texturenofocus />
+		</control>
+		<control type="group">
+			<animation effect="fade" end="100" time="200">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+
+			<animation type="WindowOpen">
+				<effect type="fade" start="0" end="100" time="300" tween="sine" easing="out" />
+				<effect type="slide" start="-320" end="0" time="400" tween="cubic" easing="out" />
+			</animation>
+			<animation type="WindowClose">
+				<effect type="fade" start="100" end="0" time="300" tween="sine" easing="out" />
+				<effect type="slide" start="0" end="-320" time="300" tween="cubic" easing="out" />
+			</animation>
+			<depth>0.10</depth>
+			<left>-170</left>
+			<animation type="Conditional" condition="ControlGroup(9000).HasFocus | Control.HasFocus(6130) | Control.HasFocus(6131) | Window.IsActive(MyPlaylist.xml)" reversible="true">
+				<effect type="slide" start="0" end="170" time="400" tween="cubic" easing="out" />
+			</animation>
+			<control type="image">
+				<width>4000</width>
+				<height>100%</height>
+				<aspectratio>scale</aspectratio>
+				<texture colordiffuse="80FFFFFF">colors/black.png</texture>
+				<visible>[ControlGroup(9000).HasFocus | Control.HasFocus(6130) | Control.HasFocus(6131) | Window.IsActive(MyPlaylist.xml)] + !System.HasModalDialog</visible>
+				<animation effect="fade" time="200">VisibleChange</animation>
+			</control>
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>170</width>
+				<height>100%</height>
+				<texture border="0,0,52,0">lists/panel-mediamenu.png</texture>
+			</control>
+			<control type="grouplist" id="9000">
+				<top>50</top>
+				<left>0</left>
+				<width>120</width>
+				<height>100%</height>
+				<onleft>9000</onleft>
+				<onup>9000</onup>
+				<onright condition="!Window.IsActive(script-smoothstreams-v3-channels_list.xml)">201</onright>
+				<onright condition="Window.IsActive(script-smoothstreams-v3-channels_list.xml)">201</onright>
+				<ondown>9000</ondown>
+				<onback>201</onback>
+				<defaultcontrol>6054</defaultcontrol>
+
+				<control type="group" id="60520">
+					<height>50</height>
+					<control type="label">
+						<width>120</width>
+						<textoffsetx>20</textoffsetx>
+						<textoffsety>15</textoffsety>
+						<height>50</height>
+						<font>font12</font>
+						<align>right</align>
+						<aligny>top</aligny>
+						<textcolor>grey</textcolor>
+						<!--<label>$VAR[PVRAreaVar2]</label>-->
+					</control>
+				</control>
+				<control type="group" id="60560">
+					<height>95</height>
+					<control type="grouplist" id="6056">
+						<orientation>vertical</orientation>
+						<itemgap>-18</itemgap>
+						<left>0</left>
+						<height>1200</height>
+						<onleft>6056</onleft>
+						<onright condition="!Window.IsActive(script-smoothstreams-v3-channels_list.xml)">201</onright>
+						<onright condition="Window.IsActive(script-smoothstreams-v3-channels_list.xml)">201</onright>
+						<onup>6056</onup>
+						<ondown>6056</ondown>
+						<width>200</width>
+
+						<control type="radiobutton" id="107">
+							<width>110</width>
+							<height>110</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font></font>
+							<texturefocus colordiffuse="Window(10000).Property(script.smoothstreams-v3.colour.focus)">buttons/roundbutton-fo.png</texturefocus>
+							<texturenofocus />
+							<radioposx>24</radioposx>
+							<radioposy>0</radioposy>
+							<radiowidth>64</radiowidth>
+							<radioheight>64</radioheight>
+							<textureradioonfocus colordiffuse="FFF0F0F0">icons/Remote@2x.png</textureradioonfocus>
+							<textureradioonnofocus colordiffuse="FFF0F0F0">icons/Remote@2x.png</textureradioonnofocus>
+							<textureradioofffocus colordiffuse="FFF0F0F0">icons/Remote@2x.png</textureradioofffocus>
+							<textureradiooffnofocus colordiffuse="FFF0F0F0">icons/Remote@2x.png</textureradiooffnofocus>
+							<textureradiooffdisabled colordiffuse="Window(10000).Property(script.smoothstreams-v3.colour.focus)">icons/Remote@2x.png</textureradiooffdisabled>
+						</control>
+
+						<control type="radiobutton" id="106">
+							<width>110</width>
+							<height>110</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font></font>
+							<texturefocus colordiffuse="Window(10000).Property(script.smoothstreams-v3.colour.focus)">buttons/roundbutton-fo.png</texturefocus>
+							<texturenofocus />
+							<radioposx>24</radioposx>
+							<radioposy>0</radioposy>
+							<radiowidth>64</radiowidth>
+							<radioheight>64</radioheight>
+							<textureradioonfocus colordiffuse="FFF0F0F0">icons/EPG@2x.png</textureradioonfocus>
+							<textureradioonnofocus colordiffuse="FFF0F0F0">icons/EPG@2x.png</textureradioonnofocus>
+							<textureradioofffocus colordiffuse="FFF0F0F0">icons/EPG@2x.png</textureradioofffocus>
+							<textureradiooffnofocus colordiffuse="FFF0F0F0">icons/EPG@2x.png</textureradiooffnofocus>
+							<textureradiooffdisabled colordiffuse="Window(10000).Property(script.smoothstreams-v3.colour.focus)">icons/EPG@2x.png</textureradiooffdisabled>
+						</control>
+
+						<control type="radiobutton" id="103">
+							<width>110</width>
+							<height>110</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font></font>
+							<texturefocus colordiffuse="Window(10000).Property(script.smoothstreams-v3.colour.focus)">buttons/roundbutton-fo.png</texturefocus>
+							<texturenofocus />
+							<radioposx>24</radioposx>
+							<radioposy>0</radioposy>
+							<radiowidth>64</radiowidth>
+							<radioheight>64</radioheight>
+							<textureradioonfocus colordiffuse="FFF0F0F0">icons/Events_list@2x.png</textureradioonfocus>
+							<textureradioonnofocus colordiffuse="FFF0F0F0">icons/Events_list@2x.png</textureradioonnofocus>
+							<textureradioofffocus colordiffuse="FFF0F0F0">icons/Events_list@2x.png</textureradioofffocus>
+							<textureradiooffnofocus colordiffuse="FFF0F0F0">icons/Events_list@2x.png</textureradiooffnofocus>
+							<textureradiooffdisabled colordiffuse="Window(10000).Property(script.smoothstreams-v3.colour.focus)">icons/Events_list@2x.png</textureradiooffdisabled>
+						</control>
+
+						<control type="radiobutton" id="104">
+							<width>110</width>
+							<height>110</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font></font>
+							<texturefocus colordiffuse="Window(10000).Property(script.smoothstreams-v3.colour.focus)">buttons/roundbutton-fo.png</texturefocus>
+							<texturenofocus />
+							<radioposx>24</radioposx>
+							<radioposy>0</radioposy>
+							<radiowidth>64</radiowidth>
+							<radioheight>64</radioheight>
+							<textureradioonfocus colordiffuse="FFF0F0F0">icons/Events_panel@2x.png</textureradioonfocus>
+							<textureradioonnofocus colordiffuse="FFF0F0F0">icons/Events_panel@2x.png</textureradioonnofocus>
+							<textureradioofffocus colordiffuse="FFF0F0F0">icons/Events_panel@2x.png</textureradioofffocus>
+							<textureradiooffnofocus colordiffuse="FFF0F0F0">icons/Events_panel@2x.png</textureradiooffnofocus>
+							<textureradiooffdisabled colordiffuse="Window(10000).Property(script.smoothstreams-v3.colour.focus)">icons/Events_panel@2x.png</textureradiooffdisabled>
+						</control>
+
+						<control type="radiobutton" id="102">
+							<width>110</width>
+							<height>110</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font></font>
+							<texturefocus colordiffuse="Window(10000).Property(script.smoothstreams-v3.colour.focus)">buttons/roundbutton-fo.png</texturefocus>
+							<texturenofocus />
+							<radioposx>24</radioposx>
+							<radioposy>0</radioposy>
+							<radiowidth>64</radiowidth>
+							<radioheight>64</radioheight>
+							<textureradioonfocus colordiffuse="FFF0F0F0">icons/Recordings@2x.png</textureradioonfocus>
+							<textureradioonnofocus colordiffuse="FFF0F0F0">icons/Recordings@2x.png</textureradioonnofocus>
+							<textureradioofffocus colordiffuse="FFF0F0F0">icons/Recordings@2x.png</textureradioofffocus>
+							<textureradiooffnofocus colordiffuse="FFF0F0F0">icons/Recordings@2x.png</textureradiooffnofocus>
+							<textureradiooffdisabled colordiffuse="FFF0F0F0">icons/Recordings@2x.png</textureradiooffdisabled>
+						</control>
+
+						<control type="radiobutton" id="105">
+							<width>110</width>
+							<height>110</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font></font>
+							<texturefocus colordiffuse="Window(10000).Property(script.smoothstreams-v3.colour.focus)">buttons/roundbutton-fo.png</texturefocus>
+							<texturenofocus />
+							<radioposx>24</radioposx>
+							<radioposy>0</radioposy>
+							<radiowidth>64</radiowidth>
+							<radioheight>64</radioheight>
+							<textureradioonfocus colordiffuse="FFF0F0F0">icons/Settings@2x.png</textureradioonfocus>
+							<textureradioonnofocus colordiffuse="FFF0F0F0">icons/Settings@2x.png</textureradioonnofocus>
+							<textureradioofffocus colordiffuse="FFF0F0F0">icons/Settings@2x.png</textureradioofffocus>
+							<textureradiooffnofocus colordiffuse="FFF0F0F0">icons/Settings@2x.png</textureradiooffnofocus>
+							<textureradiooffdisabled colordiffuse="Window(10000).Property(script.smoothstreams-v3.colour.focus)">icons/Settings@2x.png</textureradiooffdisabled>
+						</control>
+
+					</control>
+				</control>
+
+				<!--<control type="label" id="200">-->
+					<!--<include>MediaMenuLabelCommon</include>-->
+					<!--<label>$LOCALIZE[14018]</label>-->
+				<!--</control>-->
+				<!--<control type="button" id="6054">-->
+					<!--<include>MediaMenuItemsCommon</include>-->
+					<!--<label>$LOCALIZE[19141]</label>-->
+					<!--<label2>[B]$PARAM[group_label2][/B]</label2>-->
+					<!--<onclick>SendClick(28)</onclick>-->
+					<!--<visible>Window.IsActive(MyPVRChannels.xml) | Window.IsActive(MyPVRGuide.xml)</visible>-->
+				<!--</control>-->
+				<!--<control type="radiobutton" id="6060">-->
+					<!--<include>MediaMenuItemsCommon</include>-->
+					<!--<label>$LOCALIZE[31127]</label>-->
+					<!--<selected>Control.IsVisible(50)</selected>-->
+					<!--<onclick>Container.NextViewMode</onclick>-->
+					<!--<visible>Window.IsActive(MyPVRChannels.xml)</visible>-->
+				<!--</control>-->
+				</control>
+		</control>
+
+		<control type="image">
+			<animation type="WindowOpen" reversible="false">
+				<effect type="fade" start="0" end="100" time="250"/>
+			</animation>
+			<animation type="WindowClose" reversible="false">
+				<effect type="fade" start="100" end="0" time="250"/>
+			</animation>
+			<animation type="Visible" reversible="false">
+				<effect type="fade" start="0" end="100" time="250"/>
+			</animation>
+			<animation type="Hidden" reversible="false">
+				<effect type="fade" start="100" end="0" time="250"/>
+			</animation>
+			<width>100%</width>
+			<height>100%</height>
+			<texture>colors/FFFFFFFF.png</texture>
+			<colordiffuse>CC000000</colordiffuse>
+			<visible>Window.IsActive(script-smoothstreams-channel_entry.xml) | Window.IsActive(yesnodialog) | Window.IsActive(busydialog) | Window.IsActive(virtualkeyboard) | Window.IsActive(numericinput) | Window.IsActive(favourites) | Window.IsActive(playercontrols) | Window.IsActive(DialogConfirm.xml) | Window.IsActive(DialogNotification.xml) | !String.IsEmpty(Window.Property(covered))</visible>
+		</control>
+	</controls>
+</window>
