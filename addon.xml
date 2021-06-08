@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="script.smoothstreams-v3"
        name="SmoothStreams.tv"
-       version="5.0.1"
+       version="5.0.1-skn"
        provider-name="SmoothStreams">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
@@ -29,9 +29,10 @@
 <!--        <disclaimer lang="en">-->
 <!--            Important:[CR]Server settings have changed, ensure you check your settings![CR]Known Bugs:[CR] - Keymap Editor doesn't affect new OSD[CR] - Video Preview is disabled[CR] - 'A' key unoperative in OSD[CR]-->
 <!--        </disclaimer>-->
-        <news>Changes: v5.0.1 (2021-02-27)[CR] - [Fix] Delete recordings routines should now work.[CR]
+        <news>v5.0.1-skn (2021-06-8)[CR] - [Fix] Removed deprecated params causing channel play crash[CR]
         </news>
         <oldnews>
+v5.0.1 (2021-02-27)[CR] - [Fix] Delete recordings routines should now work.[CR]        
 v5.0.0 (2021-02-22)[CR] - [Update] Kodi 19 support.[CR]
 v4.2.3 (2020-11-03)[CR] 
             - [Fixed] Time fix for unprogrammed channels.[CR]

@@ -309,7 +309,7 @@ def programListItem(channel):
 	img = util.getIcon(program.channelName,channel)
 	if len(channel) == 1: channel = '0' + str(channel)
 	url = authutils.getChanUrl(channel)
-	item = xbmcgui.ListItem(program.title, path=url, thumbnailImage=img, iconImage=img)
+	item = xbmcgui.ListItem(program.title, path=url)
 	item.setArt({'icon':img, 'thumb':img})
 
 	# mediatype	string - "video", "movie", "tvshow", "season", "episode" or "musicvideo"
